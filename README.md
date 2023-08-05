@@ -6,3 +6,4 @@
 2. @uploadthing/react
 3. mongoose
 4. svix
+5. tailwindcss-animate
