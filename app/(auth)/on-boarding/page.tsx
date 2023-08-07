@@ -4,12 +4,18 @@ import { currentUser } from '@clerk/nextjs';
 export default async function OnBoardingPage() {
   const user = await currentUser();
 
-  const userInfo = {};
+  // get user info from the database
+  const userInfo = {
+    _id: '',
+    name: '',
+    bio: '',
+    image: '',
+  };
 
   const userData = {
     id: user?.id,
-    objectId: userInfo?._id,
-    username: user?.username || user?.username,
+    objectId: userInfo?._id || '',
+    username: user?.username ?? user?.username,
     name: userInfo?.name || user?.firstName || '',
     bio: userInfo?.bio || '',
     image: userInfo?.image || user?.imageUrl,
