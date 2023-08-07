@@ -25,7 +25,7 @@ import { usePathname, useRouter } from 'next/navigation';
 
 interface Props {
   user: {
-    id: string | undefined; // ??
+    id: string; // ??
     objectId: string;
     username: string;
     name: string;
