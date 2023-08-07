@@ -20,6 +20,8 @@ import * as z from 'zod';
 import { Textarea } from '../ui/textarea';
 import { isBase64Image } from '@/lib/utils';
 import { useUploadThing } from '@/lib/uploadThing';
+import { updateUser } from '@/lib/actions/user.action';
+import { usePathname, useRouter } from 'next/navigation';
 
 interface Props {
   user: {
@@ -37,6 +39,9 @@ export default function AccountProfile({ user, btnTitle }: Props) {
   const [files, setFiles] = useState<File[]>([]);
 
   const { startUpload } = useUploadThing('media');
+
+  const route = useRouter();
+  const pathname = usePathname();
 
   const form = useForm({
     resolver: zodResolver(UserValidation),
@@ -65,6 +70,21 @@ export default function AccountProfile({ user, btnTitle }: Props) {
     }
 
     console.log(values);
+
+    await updateUser({
+      userId: user.id,
+      username: values.username,
+      name: values.name,
+      bio: values.bio,
+      image: values.profile_photo,
+      path: pathname,
+    });
+
+    if (pathname === '/profile/edit') {
+      route.back();
+    } else {
+      route.push('/');
+    }
   }
 
   // handle image change and preview, then set the image to the form field, and set the image to the preview, and set the image to the state, and set the image to the form field,
