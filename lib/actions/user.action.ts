@@ -46,3 +46,17 @@ export async function updateUser({
     throw new Error(`Error updating user: ${err.message}`);
   }
 }
+
+export async function fetchUser(userId: string) {
+  try {
+    connectToDatabase();
+
+    return await UserModel.findOne({ id: userId });
+    // .populate({
+    //   path: 'communities',
+    //   model: 'Community',
+    // });
+  } catch (err: any) {
+    throw new Error(`Error fetching user: ${err.message}`);
+  }
+}

@@ -40,7 +40,7 @@ export default function AccountProfile({ user, btnTitle }: Props) {
 
   const { startUpload } = useUploadThing('media');
 
-  const route = useRouter();
+  const router = useRouter();
   const pathname = usePathname();
 
   const form = useForm({
@@ -81,9 +81,9 @@ export default function AccountProfile({ user, btnTitle }: Props) {
     });
 
     if (pathname === '/profile/edit') {
-      route.back();
+      router.back();
     } else {
-      route.push('/');
+      router.push('/');
     }
   }
 
@@ -152,6 +152,7 @@ export default function AccountProfile({ user, btnTitle }: Props) {
                   onChange={(e) => handleImageChange(e, field.onChange)}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -170,6 +171,7 @@ export default function AccountProfile({ user, btnTitle }: Props) {
                   {...field}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -188,6 +190,7 @@ export default function AccountProfile({ user, btnTitle }: Props) {
                   {...field}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
@@ -206,6 +209,7 @@ export default function AccountProfile({ user, btnTitle }: Props) {
                   {...field}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />
